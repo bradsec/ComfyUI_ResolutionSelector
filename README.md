@@ -24,9 +24,12 @@ git clone https://github.com/bradsec/ComfyUI_ResolutionSelector.git
 ```
 
 ### Usage after install
-`Add Node > utils > Resolution Selector (w x h)`
+`Add Node > utils > Resolution Selector (w x h)`  
+  
+![node_example](resolutionselector_node.png)
 
+#### SDXL hookup example
+![sdxl_hookup](sdxl_hookup.png)
 
-
-![image](resolutionselector_node.png)
-![image](sdxl_hookup.png)
+#### SD15 hookup example
+![sd15_hookup](sd15_hookup.png)
