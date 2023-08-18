@@ -12,7 +12,7 @@ A custom node for Stable Diffusion [ComfyUI](https://github.com/comfyanonymous/C
 # Change to the directory you installed ComfyUI
 cd pathTo/ComfyUI
 
-# Change to the custom_nodes directory
+# Change to the custom_nodes directory ie.
 cd custom_nodes
 ```
 
