@@ -1,6 +1,6 @@
 
 # Define resolution presets
-# Resolutions which appear to work well for SDXL as used in https://github.com/lllyasviel/Fooocus
+# Resolution list based off what is currently being used in the Fooocus SDXL Web UI (https://github.com/lllyasviel/Fooocus)
 BASE_RESOLUTIONS = [
     (1024, 1024),
     (704, 1408),
