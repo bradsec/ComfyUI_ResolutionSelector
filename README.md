@@ -29,3 +29,4 @@ git clone https://github.com/bradsec/ComfyUI_ResolutionSelector.git
 
 
 ![image](resolutionselector_node.png)
+![image](sdxl_hookup.png)
