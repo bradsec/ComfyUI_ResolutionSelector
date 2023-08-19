@@ -1,6 +1,4 @@
-
-# Define resolution presets
-# Resolution list based off what is currently being used in the Fooocus SDXL Web UI (https://github.com/lllyasviel/Fooocus)
+# Resolution presets
 BASE_RESOLUTIONS = [
     (1024, 1024),
     (704, 1408),
@@ -30,26 +28,29 @@ BASE_RESOLUTIONS = [
     (1728, 576)
 ]
 
-# Create a list of resolution strings for the drop-down menu
-resolution_strings = [f"{width}x{height}" for width, height in BASE_RESOLUTIONS]
 
-# Create the custom node class
 class ResolutionSelector:
     """
     A node to provide a drop-down list of resolutions and returns two int values (width and height).
     """
+
     def __init__(self):
         pass
 
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         """
         Return a dictionary which contains config for all input fields.
         """
+
+        # Create a list of resolution strings for the drop-down menu
+        resolution_strings = [
+            f"{width} x {height}" for width, height in BASE_RESOLUTIONS]
+
         return {
             "required": {
                 "base_resolution": (resolution_strings,),
-                "base_adjustment": (["SDXL (None)", "SD21 (75%)", "SD15 (50%)"],)
+                "base_adjustment": (["SDXL (None)", "SD21 (75%)", "SD15 (50%)"],),
             }
         }
 
@@ -58,24 +59,24 @@ class ResolutionSelector:
     FUNCTION = "select_resolution"
     CATEGORY = 'utils'
 
-    @staticmethod
-    def select_resolution(base_resolution, base_adjustment):
+    def select_resolution(self, base_resolution, base_adjustment):
         """
         Returns the width and height based on the selected resolution and adjustment.
 
         Args:
-            base_resolution (str): Selected resolution in the format "widthxheight".
-            base_adjustment (str): Selected adjustment (resolution values reduction) based on Stable Diffusion version.
+            base_resolution (str): Selected resolution in the format "width x height".
+            base_adjustment (str): Selected adjustment (resolution value reduction) based on SD version.
 
         Returns:
             Tuple[int, int]: Adjusted width and height.
         """
         try:
-            width, height = map(int, base_resolution.split('x'))
+            width, height = map(int, base_resolution.split(' x '))
         except ValueError:
             raise ValueError("Invalid base_resolution format.")
 
-        adjustment_factors = {"SDXL (None)": 1, "SD21 (75%)": 0.75, "SD15 (50%)": 0.5}
+        adjustment_factors = {
+            "SDXL (None)": 1, "SD21 (75%)": 0.75, "SD15 (50%)": 0.5}
         factor = adjustment_factors.get(base_adjustment)
 
         if factor is None:
@@ -86,10 +87,11 @@ class ResolutionSelector:
 
         return width, height
 
+
 NODE_CLASS_MAPPINGS = {
     "ResolutionSelector": ResolutionSelector,
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
-    "ResolutionSelector": "Resolution Selector (w x h)",
+    "ResolutionSelector": "Resolution Selector",
 }
