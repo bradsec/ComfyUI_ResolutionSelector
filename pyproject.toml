@@ -2,13 +2,13 @@
 name = "comfyui_resolutionselector""
 description = "Custom node for ComfyUI providing easy resolution and empty latent selection for image generation workflows."
 version = "2.0.0"
-license = "MIT"
+license = {file = "LICENSE"}
 
 [project.urls]
 Repository = "https://github.com/bradsec/ComfyUI_ResolutionSelector"
 #  Used by Comfy Registry https://comfyregistry.org
 
 [tool.comfy]
-PublisherId = "BRADSEC"
+PublisherId = "brads3c"
 DisplayName = "ComfyUI_ResolutionSelector"
 Icon = ""
