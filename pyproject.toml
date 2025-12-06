@@ -9,6 +9,6 @@ Repository = "https://github.com/bradsec/ComfyUI_ResolutionSelector"
 #  Used by Comfy Registry https://comfyregistry.org
 
 [tool.comfy]
-PublisherId = "brads3c"
+PublisherId = "bradsec"
 DisplayName = "ComfyUI_ResolutionSelector"
 Icon = ""
