@@ -1,43 +1,72 @@
-# ResolutionSelector for ComfyUI
+# Resolution Selector for ComfyUI
 
-A custom node for Stable Diffusion [ComfyUI](https://github.com/comfyanonymous/ComfyUI) to enable easy selection of image resolutions for SDXL SD15 SD21
+Custom node for [ComfyUI](https://github.com/comfyanonymous/ComfyUI) providing easy resolution and empty latent selection for image generation workflows.
 
-- Select base SDXL resolution, width and height are returned as `INT` values which can be connected to latent image inputs or other inputs such as the `CLIPTextEncodeSDXL` `width, height, target_width, target_height`. 
-- Resolution list based off what is currently being used in the [Fooocus SDXL Web UI](https://github.com/lllyasviel/Fooocus).
-- If using older models such as SD 1.5 or SD 2.1 use the `base_adjustment` dropdown. This will reduce the returned width and height values to suit the selected model whilst maintaining the image aspect ratio.
+![Node Preview](node_preview.png)
 
-```terminal
-# Example
-SDXL base_resolution       1024x1024
-SD21 adjustment returns    768x768
-SD15 adjustment returns    512x512  
-```
+## Features
 
+### Resolution Selector
+- **Model-optimised resolution presets** (portrait, landscape, square)
+- **Empty latent output** for direct KSampler connection
+- **Custom width/height inputs** with **independent multiplier and latent**
 
-### Installation
+## Installation
 
-```
+```bash
 # Change to the directory you installed ComfyUI
 cd pathTo/ComfyUI
 
-# Change to the custom_nodes directory ie.
+# Change to the custom_nodes directory
 cd custom_nodes
-```
 
-```terminal
 # Clone the repo into custom_nodes
 git clone https://github.com/bradsec/ComfyUI_ResolutionSelector.git
 
 # Restart ComfyUI
 ```
 
-### Usage after install
-`Add Node > utils > Resolution Selector`  
-  
-![node_example](resolution_selector_node.png)
+## Usage
 
-#### SDXL hookup example
-![sdxl_hookup](sdxl_hookup.png)
+### Resolution Selector
 
-#### SD15 hookup example
-![sd15_hookup](sd15_hookup.png)
+**Add Node:** `Add Node > utils > Resolution Selector`
+
+**Inputs:**
+- `model` (dropdown) - Select your image generation model or "All" for all resolutions
+- `resolution` (dropdown) - Choose from model-optimized presets with aspect ratios (e.g., "1920x1080 (16:9 Landscape)")
+- `resolution_multiplier` (dropdown) - Multiply preset resolution (1x, 2x, 3x, 4x)
+- `custom_width` (optional) - Override with custom width (0-4096, step 8)
+- `custom_height` (optional) - Override with custom height (0-4096, step 8)
+- `custom_multiplier` (optional) - Independent multiplier for custom dimensions (1x, 2x, 3x, 4x)
+
+**Outputs:**
+- `width` (INT) - Preset resolution width in pixels
+- `height` (INT) - Preset resolution height in pixels
+- `latent` (LATENT) - Empty latent tensor for preset resolution
+- `custom_width` (INT) - Custom width (0 if not set)
+- `custom_height` (INT) - Custom height (0 if not set)
+- `custom_latent` (LATENT) - Empty latent tensor for custom resolution
+
+**Example Workflows:**
+
+**Basic preset with multiplier:**
+```
+Resolution Selector (model: SDXL, resolution: "1024x1024 (1:1 Square)", multiplier: 2x)
+  → width: 2048, height: 2048
+  → latent → KSampler
+```
+
+**Custom dimensions with independent multiplier:**
+```
+Resolution Selector (custom_width: 1024, custom_height: 768, custom_multiplier: 2x)
+  → custom_width: 2048, custom_height: 1536
+  → custom_latent → KSampler
+```
+
+**Using "All" model option:**
+```
+Resolution Selector (model: All, resolution: "1920x1080 (16:9 Landscape)")
+  → Shows all 34 unique resolutions from all models
+```
+

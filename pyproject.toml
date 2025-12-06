@@ -1,7 +1,7 @@
 [project]
-name = "comfyui_resolutionselector"
-description = "A custom node for Stable Diffusion ComfyUI to enable easy selection of image resolutions for SDXL SD15 SD21"
-version = "1.0.0"
+name = "comfyui_resolutionselector""
+description = "Custom node for ComfyUI providing easy resolution and empty latent selection for image generation workflows."
+version = "2.0.0"
 license = "MIT"
 
 [project.urls]

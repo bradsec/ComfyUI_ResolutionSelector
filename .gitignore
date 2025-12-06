@@ -119,3 +119,6 @@ venv.bak/
 Thumbs.db
 ehthumbs.db
 Desktop.ini
+
+# Claude Code files
+.claude/
