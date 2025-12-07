@@ -85,7 +85,8 @@ def test_model_resolutions():
     flux_res = get_resolution_list("Flux")
     print(f"  Flux has {len(flux_res)} resolutions")
     assert len(flux_res) > 0, "Flux should have resolutions"
-    assert any("1920x1080" in r for r in flux_res), "Flux should have 1920x1080"
+    # Flux uses 16-pixel divisibility, so 1920x1080 becomes 1920x1088
+    assert any("1920x1088" in r for r in flux_res), "Flux should have 1920x1088 (Full HD adapted to 16px divisibility)"
 
     # Test All model
     all_res = get_resolution_list("All")

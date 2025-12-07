@@ -8,35 +8,36 @@ except ImportError:
 
 
 # Model-specific resolution presets with constraints
+# Includes: model-optimized sizes + photo print (4x6, 5x7, 8x10) + digital/social + canvas art ratios
 MODEL_RESOLUTIONS = {
     "Flux": {
-        "square": [(512, 512), (768, 768), (1024, 1024), (1280, 1280), (1536, 1536), (1920, 1920), (2048, 2048)],
-        "portrait": [(768, 1344), (832, 1216), (896, 1152), (928, 1664), (1024, 1536), (1024, 1792), (1080, 1920), (1152, 2048)],
-        "landscape": [(1344, 768), (1216, 832), (1152, 896), (1536, 1024), (1664, 928), (1792, 1024), (1920, 1080), (2048, 1152)],
+        "square": [(512, 512), (768, 768), (1024, 1024), (1088, 1088), (1280, 1280), (1536, 1536), (1920, 1920), (2048, 2048)],
+        "portrait": [(688, 2048), (768, 1344), (832, 1216), (896, 1152), (928, 1664), (1024, 1536), (1024, 1792), (1024, 2048), (1088, 1920), (1152, 2048), (1200, 1792), (1360, 2048), (1456, 2048), (1536, 2048), (1616, 2048), (1632, 2048), (1712, 2048)],
+        "landscape": [(1280, 720), (1344, 768), (1216, 832), (1152, 896), (1536, 1024), (1664, 928), (1792, 1024), (1792, 1200), (1920, 1088), (2048, 688), (2048, 1024), (2048, 1152), (2048, 1360), (2048, 1456), (2048, 1536), (2048, 1616), (2048, 1632), (2048, 1712)],
         "constraints": {"divisible_by": 16, "min": 256, "max": 2048}
     },
     "Qwen Image": {
-        "square": [(1024, 1024), (1280, 1280), (1328, 1328), (1536, 1536), (1920, 1920), (2048, 2048)],
-        "portrait": [(928, 1664), (1024, 1536), (1080, 1920), (1140, 1472), (1152, 2048)],
-        "landscape": [(1472, 1140), (1536, 1024), (1664, 928), (1920, 1080), (2048, 1152)],
+        "square": [(1024, 1024), (1080, 1080), (1280, 1280), (1328, 1328), (1536, 1536), (1920, 1920), (2048, 2048)],
+        "portrait": [(680, 2048), (928, 1664), (1024, 1536), (1024, 2048), (1080, 1920), (1140, 1472), (1152, 2048), (1200, 1800), (1368, 2048), (1464, 2048), (1536, 2048), (1608, 2048), (1640, 2048), (1704, 2048)],
+        "landscape": [(1280, 720), (1472, 1140), (1536, 1024), (1664, 928), (1800, 1200), (1920, 1080), (2048, 680), (2048, 1024), (2048, 1152), (2048, 1368), (2048, 1464), (2048, 1536), (2048, 1608), (2048, 1640), (2048, 1704)],
         "constraints": {"divisible_by": 8, "min": 256, "max": 2048}
     },
     "Z-Image": {
-        "square": [(512, 512), (768, 768), (1024, 1024), (1280, 1280), (1536, 1536), (1920, 1920), (2048, 2048)],
-        "portrait": [(720, 1280), (768, 1024), (1080, 1920), (1152, 2048)],
-        "landscape": [(1024, 768), (1280, 720), (1920, 1080), (2048, 1152)],
+        "square": [(512, 512), (768, 768), (1024, 1024), (1080, 1080), (1280, 1280), (1536, 1536), (1920, 1920), (2048, 2048)],
+        "portrait": [(680, 2048), (720, 1280), (768, 1024), (1024, 2048), (1080, 1920), (1152, 2048), (1200, 1800), (1368, 2048), (1464, 2048), (1536, 2048), (1608, 2048), (1640, 2048), (1704, 2048)],
+        "landscape": [(1024, 768), (1280, 720), (1800, 1200), (1920, 1080), (2048, 680), (2048, 1024), (2048, 1152), (2048, 1368), (2048, 1464), (2048, 1536), (2048, 1608), (2048, 1640), (2048, 1704)],
         "constraints": {"divisible_by": 8, "min": 256, "max": 2048}
     },
     "SD 1.5": {
-        "square": [(512, 512), (768, 768), (1024, 1024), (1280, 1280), (1536, 1536)],
-        "portrait": [(512, 768), (512, 682), (512, 1024), (768, 1024), (768, 1344), (1080, 1920)],
-        "landscape": [(768, 512), (1024, 512), (1024, 768), (1344, 768), (1536, 512), (1920, 1080)],
+        "square": [(512, 512), (768, 768), (1024, 1024), (1080, 1080), (1280, 1280), (1536, 1536)],
+        "portrait": [(512, 768), (512, 682), (512, 1024), (680, 2048), (768, 1024), (768, 1344), (1024, 2048), (1080, 1920), (1200, 1800), (1368, 2048), (1464, 2048), (1536, 2048), (1608, 2048), (1640, 2048), (1704, 2048)],
+        "landscape": [(768, 512), (1024, 512), (1024, 768), (1280, 720), (1344, 768), (1536, 512), (1800, 1200), (1920, 1080), (2048, 680), (2048, 1024), (2048, 1368), (2048, 1464), (2048, 1536), (2048, 1608), (2048, 1640), (2048, 1704)],
         "constraints": {"divisible_by": 8, "min": 256, "max": 2048}
     },
     "SDXL": {
-        "square": [(1024, 1024), (1280, 1280), (1536, 1536), (1920, 1920), (2048, 2048)],
-        "portrait": [(640, 1536), (768, 1344), (832, 1216), (896, 1152), (1024, 1536), (1080, 1920), (1152, 2048)],
-        "landscape": [(1152, 896), (1216, 832), (1344, 768), (1536, 640), (1536, 1024), (1920, 1080), (2048, 1152)],
+        "square": [(1024, 1024), (1080, 1080), (1280, 1280), (1536, 1536), (1920, 1920), (2048, 2048)],
+        "portrait": [(640, 1536), (680, 2048), (768, 1344), (832, 1216), (896, 1152), (1024, 1536), (1024, 2048), (1080, 1920), (1152, 2048), (1200, 1800), (1368, 2048), (1464, 2048), (1536, 2048), (1608, 2048), (1640, 2048), (1704, 2048)],
+        "landscape": [(1152, 896), (1216, 832), (1280, 720), (1344, 768), (1536, 640), (1536, 1024), (1800, 1200), (1920, 1080), (2048, 680), (2048, 1024), (2048, 1152), (2048, 1368), (2048, 1464), (2048, 1536), (2048, 1608), (2048, 1640), (2048, 1704)],
         "constraints": {"divisible_by": 8, "min": 256, "max": 2048}
     }
 }
@@ -60,7 +61,7 @@ def gcd(a, b):
 
 def calculate_aspect_ratio(width, height):
     """
-    Calculate simplified aspect ratio from dimensions, rounding to common ratios.
+    Calculate simplified aspect ratio from dimensions, using nearest common ratio.
 
     Args:
         width (int): Width in pixels
@@ -91,19 +92,12 @@ def calculate_aspect_ratio(width, height):
         (0.56, "9:16"),    # 0.5625
         (0.5, "1:2"),      # 0.5
         (0.42, "5:12"),    # 0.4166...
+        (0.33, "1:3"),     # 0.333... (panoramic)
     ]
 
-    # Find closest common ratio (within 5% tolerance)
-    tolerance = 0.05
-    for ratio_value, ratio_str in common_ratios:
-        if abs(actual_ratio - ratio_value) / ratio_value < tolerance:
-            return ratio_str
-
-    # If no close match, calculate GCD-based ratio
-    divisor = gcd(width, height)
-    ratio_width = width // divisor
-    ratio_height = height // divisor
-    return f"{ratio_width}:{ratio_height}"
+    # Find closest common ratio by absolute difference
+    closest_ratio = min(common_ratios, key=lambda r: abs(actual_ratio - r[0]))
+    return closest_ratio[1]
 
 
 def format_resolution(width, height):
@@ -283,6 +277,13 @@ class ResolutionSelector:
                 "resolution_multiplier": (["1x", "2x", "3x", "4x"], {
                     "default": "1x"
                 }),
+                "batch_size": ("INT", {
+                    "default": 1,
+                    "min": 1,
+                    "max": 64,
+                    "step": 1,
+                    "display": "number"
+                }),
             },
             "optional": {
                 "custom_width": ("INT", {
@@ -302,6 +303,13 @@ class ResolutionSelector:
                 "custom_multiplier": (["1x", "2x", "3x", "4x"], {
                     "default": "1x"
                 }),
+                "custom_batch": ("INT", {
+                    "default": 1,
+                    "min": 1,
+                    "max": 64,
+                    "step": 1,
+                    "display": "number"
+                }),
             }
         }
 
@@ -310,7 +318,7 @@ class ResolutionSelector:
     FUNCTION = "select_resolution"
     CATEGORY = "utils"
 
-    def select_resolution(self, model, resolution, resolution_multiplier="1x", custom_width=0, custom_height=0, custom_multiplier="1x"):
+    def select_resolution(self, model, resolution, resolution_multiplier="1x", batch_size=1, custom_width=0, custom_height=0, custom_multiplier="1x", custom_batch=1):
         """
         Select and validate resolution, generate outputs.
 
@@ -318,9 +326,11 @@ class ResolutionSelector:
             model (str): Selected model name
             resolution (str): Selected preset resolution string
             resolution_multiplier (str): Multiplier for resolution (1x-4x)
+            batch_size (int): Number of latent samples for preset resolution (default: 1)
             custom_width (int, optional): Custom width override
             custom_height (int, optional): Custom height override
             custom_multiplier (str, optional): Multiplier for custom dimensions (1x-4x)
+            custom_batch (int, optional): Number of latent samples for custom resolution (default: 1)
 
         Returns:
             tuple: (width: int, height: int, latent: dict, custom_width: int, custom_height: int, custom_latent: dict)
@@ -336,8 +346,8 @@ class ResolutionSelector:
         width *= multiplier
         height *= multiplier
 
-        # Generate latent for preset resolution
-        latent = self._generate_empty_latent(width, height)
+        # Generate latent for preset resolution with batch size
+        latent = self._generate_empty_latent(width, height, batch_size)
 
         # Determine final custom dimensions
         if custom_width > 0 and custom_height > 0:
@@ -349,13 +359,13 @@ class ResolutionSelector:
             if model != "All":
                 self._validate_dimensions(model, final_custom_width, final_custom_height)
 
-            # Generate custom latent
-            custom_latent = self._generate_empty_latent(final_custom_width, final_custom_height)
+            # Generate custom latent with custom batch size
+            custom_latent = self._generate_empty_latent(final_custom_width, final_custom_height, custom_batch)
 
             return (width, height, latent, final_custom_width, final_custom_height, custom_latent)
         else:
             # No custom dimensions, return zeros and minimal empty custom latent
-            custom_latent = self._generate_empty_latent(1, 1)
+            custom_latent = self._generate_empty_latent(1, 1, 1)
 
             return (width, height, latent, 0, 0, custom_latent)
 
@@ -433,5 +443,5 @@ NODE_CLASS_MAPPINGS = {
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
-    "ResolutionSelector": "Resolution Selector",
+    "ResolutionSelector": "Resolution Selector Plus",
 }
